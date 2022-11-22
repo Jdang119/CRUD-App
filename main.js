@@ -45,22 +45,24 @@ form.addEventListener("submit", (e) =>{
  //function that creates task an injects this div with bootstrap elements, assigns deleteTask,EditTask and and createTask to icons
  //
  let createTasks = () => {
-  tasks.innerHTML += `
-      <div id=${data}>
-            <span class="fw-bold">${data.text}</span>
-            <span class="small text-secondary">${data.date}</span>
-            <p>${data.description}</p>
+    tasks.innerHTML = "";
+    data.map((x, y) => {
+      return (tasks.innerHTML += `
+      <div id=${y}>
+            <span class="fw-bold">${x.text}</span>
+            <span class="small text-secondary">${x.date}</span>
+            <p>${x.description}</p>
     
             <span class="options">
               <i onClick= "editTask(this)" data-bs-toggle="modal" data-bs-target="#form" class="fas fa-edit"></i>
               <i onClick ="deleteTask(this);createTasks()" class="fas fa-trash-alt"></i>
             </span>
           </div>
-      `;
-    };
+      `);
+    });
   
     resetForm();
-  
+  };
 
 //function resets input values and clears form for user to type in new data
   let resetForm = () => {
